@@ -10,7 +10,7 @@ namespace Web.Controllers
         [HttpGet]
         public async Task<string> Get()
         {
-            return await System.IO.File.ReadAllTextAsync(@"sample.txt").ConfigureAwait(true);
+            return await System.IO.File.ReadAllTextAsync(@"sample.txt").ConfigureAwait(false);
         }
     }
 }
