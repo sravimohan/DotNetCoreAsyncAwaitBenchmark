@@ -9,10 +9,14 @@ namespace BenchMark
     {
         private static readonly HttpClient client = new HttpClient();
 
-        public static void Main()
+        public static async Task Main()
         {
-            var url = "https://localhost:44352/readfile";
-            var urlAsync = "https://localhost:44352/readfileasync";
+            var url = "http://localhost:50095/readfile";
+            var urlAsync = "http://localhost:50095/readfileasync";
+
+            //warm up
+            await client.GetAsync(url);
+            await client.GetAsync(urlAsync);
 
             Console.WriteLine("Calling endpoint not using async/await");
             CallApi(url);
@@ -30,7 +34,7 @@ namespace BenchMark
             var startTime = DateTime.Now;
 
             var count = 0;
-            while (count <= 1000)
+            while (count <= 10000)
             {
                 count++;
                 tasks.Add(client.GetAsync(url));
@@ -38,7 +42,7 @@ namespace BenchMark
 
             Task.WaitAll();
             
-            Console.WriteLine($"Elapsed time for 1000 calls is {DateTime.Now - startTime}");
+            Console.WriteLine($"Elapsed time for 10000 calls is {DateTime.Now - startTime}");
         }
     }
 }
