@@ -1,6 +1,6 @@
-Rudimentary comparison between using a controller method with and without async/await/
+Rudimentary comparison between using a controller method with and without async/await
 
-*Sample output:*
+**Sample output:**
 
 Calling endpoint not using async/await
 Elapsed time for 1000 calls is 00:00:02.1701226
